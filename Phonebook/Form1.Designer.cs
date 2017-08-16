@@ -51,7 +51,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtContactnum = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtx = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -60,23 +60,32 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvviewer = new System.Windows.Forms.DataGridView();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.lblname = new System.Windows.Forms.Label();
+            this.lblusername = new System.Windows.Forms.Label();
+            this.lblpassword = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.lblcontact = new System.Windows.Forms.Label();
+            this.lbladdress = new System.Windows.Forms.Label();
+            this.lblbirhdate = new System.Windows.Forms.Label();
+            this.lblage = new System.Windows.Forms.Label();
+            this.lblgender = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvviewer)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "User Details:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 42;
             // 
             // txtUsername
             // 
@@ -207,9 +216,11 @@
             this.dtpbday.Name = "dtpbday";
             this.dtpbday.Size = new System.Drawing.Size(200, 20);
             this.dtpbday.TabIndex = 21;
+            this.dtpbday.ValueChanged += new System.EventHandler(this.dtpbday_ValueChanged);
             // 
             // txtage
             // 
+            this.txtage.Enabled = false;
             this.txtage.Location = new System.Drawing.Point(222, 151);
             this.txtage.Name = "txtage";
             this.txtage.Size = new System.Drawing.Size(155, 20);
@@ -218,6 +229,7 @@
             // rdomale
             // 
             this.rdomale.AutoSize = true;
+            this.rdomale.Checked = true;
             this.rdomale.Location = new System.Drawing.Point(222, 199);
             this.rdomale.Name = "rdomale";
             this.rdomale.Size = new System.Drawing.Size(48, 17);
@@ -233,7 +245,6 @@
             this.rdofmale.Name = "rdofmale";
             this.rdofmale.Size = new System.Drawing.Size(59, 17);
             this.rdofmale.TabIndex = 24;
-            this.rdofmale.TabStop = true;
             this.rdofmale.Text = "Female";
             this.rdofmale.UseVisualStyleBackColor = true;
             // 
@@ -262,12 +273,13 @@
             this.label12.TabIndex = 28;
             this.label12.Text = "ID:";
             // 
-            // txtx
+            // txtID
             // 
-            this.txtx.Location = new System.Drawing.Point(133, 19);
-            this.txtx.Name = "txtx";
-            this.txtx.Size = new System.Drawing.Size(155, 20);
-            this.txtx.TabIndex = 27;
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(133, 19);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(155, 20);
+            this.txtID.TabIndex = 27;
             // 
             // label13
             // 
@@ -341,13 +353,19 @@
             this.label20.TabIndex = 36;
             this.label20.Text = "Gender:";
             // 
-            // dataGridView1
+            // dgvviewer
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 339);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(901, 150);
-            this.dataGridView1.TabIndex = 37;
+            this.dgvviewer.AllowUserToAddRows = false;
+            this.dgvviewer.AllowUserToDeleteRows = false;
+            this.dgvviewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvviewer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvviewer.Location = new System.Drawing.Point(9, 339);
+            this.dgvviewer.Name = "dgvviewer";
+            this.dgvviewer.ReadOnly = true;
+            this.dgvviewer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvviewer.Size = new System.Drawing.Size(950, 176);
+            this.dgvviewer.TabIndex = 37;
+            this.dgvviewer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvviewer_CellContentClick);
             // 
             // btnSubmit
             // 
@@ -357,6 +375,7 @@
             this.btnSubmit.TabIndex = 38;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnConfirm
             // 
@@ -366,6 +385,7 @@
             this.btnConfirm.TabIndex = 39;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // label21
             // 
@@ -382,17 +402,131 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(848, 20);
             this.txtSearch.TabIndex = 40;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(687, 225);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 43;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // lblname
+            // 
+            this.lblname.AutoSize = true;
+            this.lblname.Location = new System.Drawing.Point(537, 22);
+            this.lblname.Name = "lblname";
+            this.lblname.Size = new System.Drawing.Size(0, 13);
+            this.lblname.TabIndex = 44;
+            // 
+            // lblusername
+            // 
+            this.lblusername.AutoSize = true;
+            this.lblusername.Location = new System.Drawing.Point(537, 45);
+            this.lblusername.Name = "lblusername";
+            this.lblusername.Size = new System.Drawing.Size(0, 13);
+            this.lblusername.TabIndex = 45;
+            // 
+            // lblpassword
+            // 
+            this.lblpassword.AutoSize = true;
+            this.lblpassword.Location = new System.Drawing.Point(537, 68);
+            this.lblpassword.Name = "lblpassword";
+            this.lblpassword.Size = new System.Drawing.Size(0, 13);
+            this.lblpassword.TabIndex = 46;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(537, 90);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(10, 13);
+            this.label24.TabIndex = 47;
+            this.label24.Text = ".";
+            // 
+            // lblcontact
+            // 
+            this.lblcontact.AutoSize = true;
+            this.lblcontact.Location = new System.Drawing.Point(537, 90);
+            this.lblcontact.Name = "lblcontact";
+            this.lblcontact.Size = new System.Drawing.Size(0, 13);
+            this.lblcontact.TabIndex = 48;
+            // 
+            // lbladdress
+            // 
+            this.lbladdress.AutoSize = true;
+            this.lbladdress.Location = new System.Drawing.Point(537, 113);
+            this.lbladdress.Name = "lbladdress";
+            this.lbladdress.Size = new System.Drawing.Size(0, 13);
+            this.lbladdress.TabIndex = 49;
+            // 
+            // lblbirhdate
+            // 
+            this.lblbirhdate.AutoSize = true;
+            this.lblbirhdate.Location = new System.Drawing.Point(537, 135);
+            this.lblbirhdate.Name = "lblbirhdate";
+            this.lblbirhdate.Size = new System.Drawing.Size(0, 13);
+            this.lblbirhdate.TabIndex = 50;
+            // 
+            // lblage
+            // 
+            this.lblage.AutoSize = true;
+            this.lblage.Location = new System.Drawing.Point(537, 158);
+            this.lblage.Name = "lblage";
+            this.lblage.Size = new System.Drawing.Size(0, 13);
+            this.lblage.TabIndex = 51;
+            // 
+            // lblgender
+            // 
+            this.lblgender.AutoSize = true;
+            this.lblgender.Location = new System.Drawing.Point(537, 180);
+            this.lblgender.Name = "lblgender";
+            this.lblgender.Size = new System.Drawing.Size(0, 13);
+            this.lblgender.TabIndex = 52;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(510, 203);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(21, 13);
+            this.label22.TabIndex = 53;
+            this.label22.Text = "ID:";
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(537, 203);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(0, 13);
+            this.lblID.TabIndex = 54;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 501);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(971, 527);
+            this.Controls.Add(this.lblID);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.lblgender);
+            this.Controls.Add(this.lblage);
+            this.Controls.Add(this.lblbirhdate);
+            this.Controls.Add(this.lbladdress);
+            this.Controls.Add(this.lblcontact);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.lblpassword);
+            this.Controls.Add(this.lblusername);
+            this.Controls.Add(this.lblname);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnSubmit);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvviewer);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label19);
@@ -402,7 +536,7 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txtx);
+            this.Controls.Add(this.txtID);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txtContactnum);
             this.Controls.Add(this.rdofmale);
@@ -427,7 +561,8 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvviewer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,7 +593,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtContactnum;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtx;
+        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
@@ -467,11 +602,23 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvviewer;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblname;
+        private System.Windows.Forms.Label lblusername;
+        private System.Windows.Forms.Label lblpassword;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lblcontact;
+        private System.Windows.Forms.Label lbladdress;
+        private System.Windows.Forms.Label lblbirhdate;
+        private System.Windows.Forms.Label lblage;
+        private System.Windows.Forms.Label lblgender;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblID;
     }
 }
 

@@ -85,9 +85,31 @@ namespace Phonebook
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Insert")]
-		public void sp_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phStudID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phUsername, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phPassword, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(40)")] string phFirst_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phMiddle_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string phAddress, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> phAge, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(2)")] string phGender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string phContactNum, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> phBirthDate)
+		public int sp_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phStudID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phUsername, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string phPassword, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(40)")] string phFirst_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phMiddle_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string phAddress, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> phAge, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string phGender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string phContactNum, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> phBirthDate)
 		{
-			this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phStudID, phUsername, phPassword, phLast_Name, phFirst_Name, phMiddle_Name, phAddress, phAge, phGender, phContactNum, phBirthDate);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phStudID, phUsername, phPassword, phLast_Name, phFirst_Name, phMiddle_Name, phAddress, phAge, phGender, phContactNum, phBirthDate);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_StudentID")]
+		public int sp_StudentID()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Update")]
+		public int sp_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phStudID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phUsername, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string phPassword, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(40)")] string phFirst_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phMiddle_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string phAddress, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> phAge, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string phGender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string phContactNum, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> phBirthDate)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phStudID, phUsername, phPassword, phLast_Name, phFirst_Name, phMiddle_Name, phAddress, phAge, phGender, phContactNum, phBirthDate);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_login")]
+		public ISingleResult<sp_loginResult> sp_login([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string password)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password);
+			return ((ISingleResult<sp_loginResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_mview")]
@@ -102,19 +124,6 @@ namespace Phonebook
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phLast_Name);
 			return ((ISingleResult<sp_SearchResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_StudentID")]
-		public int sp_StudentID()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Update")]
-		public void sp_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phStudID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phUsername, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phPassword, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(40)")] string phFirst_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phMiddle_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string phAddress, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> phAge, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(2)")] string phGender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string phContactNum, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> phBirthDate)
-		{
-			this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phStudID, phUsername, phPassword, phLast_Name, phFirst_Name, phMiddle_Name, phAddress, phAge, phGender, phContactNum, phBirthDate);
 		}
 	}
 	
@@ -144,7 +153,7 @@ namespace Phonebook
 		
 		private string _phContactNum;
 		
-		private System.Nullable<System.DateTime> _phBirthDate;
+		private System.DateTime _phBirthDate;
 		
 		public tblPhoneBook()
 		{
@@ -166,7 +175,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phStudID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phStudID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
 		public string phStudID
 		{
 			get
@@ -198,7 +207,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phPassword", DbType="VarChar(30)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phPassword", DbType="VarChar(MAX)")]
 		public string phPassword
 		{
 			get
@@ -262,7 +271,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phAddress", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phAddress", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string phAddress
 		{
 			get
@@ -294,7 +303,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phGender", DbType="VarChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phGender", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string phGender
 		{
 			get
@@ -310,7 +319,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phContactNum", DbType="VarChar(15)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phContactNum", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
 		public string phContactNum
 		{
 			get
@@ -326,8 +335,8 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phBirthDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> phBirthDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phBirthDate", DbType="DateTime NOT NULL")]
+		public System.DateTime phBirthDate
 		{
 			get
 			{
@@ -368,7 +377,7 @@ namespace Phonebook
 		
 		private string _phContactNum;
 		
-		private System.Nullable<System.DateTime> _phBirthDate;
+		private System.DateTime _phBirthDate;
 		
 		public sp_viewResult()
 		{
@@ -390,7 +399,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phStudID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phStudID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
 		public string phStudID
 		{
 			get
@@ -486,7 +495,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phAddress", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phAddress", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string phAddress
 		{
 			get
@@ -518,7 +527,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phGender", DbType="VarChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phGender", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string phGender
 		{
 			get
@@ -534,7 +543,7 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phContactNum", DbType="VarChar(15)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phContactNum", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
 		public string phContactNum
 		{
 			get
@@ -550,8 +559,8 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phBirthDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> phBirthDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phBirthDate", DbType="DateTime NOT NULL")]
+		public System.DateTime phBirthDate
 		{
 			get
 			{
@@ -562,6 +571,50 @@ namespace Phonebook
 				if ((this._phBirthDate != value))
 				{
 					this._phBirthDate = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_loginResult
+	{
+		
+		private string _phUsername;
+		
+		private string _phPassword;
+		
+		public sp_loginResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phUsername", DbType="VarChar(30)")]
+		public string phUsername
+		{
+			get
+			{
+				return this._phUsername;
+			}
+			set
+			{
+				if ((this._phUsername != value))
+				{
+					this._phUsername = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phPassword", DbType="VarChar(MAX)")]
+		public string phPassword
+		{
+			get
+			{
+				return this._phPassword;
+			}
+			set
+			{
+				if ((this._phPassword != value))
+				{
+					this._phPassword = value;
 				}
 			}
 		}
@@ -570,186 +623,186 @@ namespace Phonebook
 	public partial class sp_mviewResult
 	{
 		
-		private string _phstudid;
+		private string _StudentID;
 		
-		private string _phusername;
+		private string _Username;
 		
-		private string _phlast_name;
+		private string _Last_Name;
 		
-		private string _phfirst_name;
+		private string _First_Name;
 		
-		private string _phmiddle_name;
+		private string _Middle_Name;
 		
-		private string _phaddress;
+		private string _Address;
 		
-		private int _phage;
+		private int _Age;
 		
-		private string _phgender;
+		private string _Gender;
 		
-		private string _phcontactnum;
+		private string _Contact_Number;
 		
-		private System.Nullable<System.DateTime> _phbirthdate;
+		private System.DateTime _Birthdate;
 		
 		public sp_mviewResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phstudid", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string phstudid
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string StudentID
 		{
 			get
 			{
-				return this._phstudid;
+				return this._StudentID;
 			}
 			set
 			{
-				if ((this._phstudid != value))
+				if ((this._StudentID != value))
 				{
-					this._phstudid = value;
+					this._StudentID = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phusername", DbType="VarChar(30)")]
-		public string phusername
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(30)")]
+		public string Username
 		{
 			get
 			{
-				return this._phusername;
+				return this._Username;
 			}
 			set
 			{
-				if ((this._phusername != value))
+				if ((this._Username != value))
 				{
-					this._phusername = value;
+					this._Username = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phlast_name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string phlast_name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Last Name]", Storage="_Last_Name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Last_Name
 		{
 			get
 			{
-				return this._phlast_name;
+				return this._Last_Name;
 			}
 			set
 			{
-				if ((this._phlast_name != value))
+				if ((this._Last_Name != value))
 				{
-					this._phlast_name = value;
+					this._Last_Name = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phfirst_name", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
-		public string phfirst_name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[First Name]", Storage="_First_Name", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string First_Name
 		{
 			get
 			{
-				return this._phfirst_name;
+				return this._First_Name;
 			}
 			set
 			{
-				if ((this._phfirst_name != value))
+				if ((this._First_Name != value))
 				{
-					this._phfirst_name = value;
+					this._First_Name = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phmiddle_name", DbType="VarChar(20)")]
-		public string phmiddle_name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Middle Name]", Storage="_Middle_Name", DbType="VarChar(20)")]
+		public string Middle_Name
 		{
 			get
 			{
-				return this._phmiddle_name;
+				return this._Middle_Name;
 			}
 			set
 			{
-				if ((this._phmiddle_name != value))
+				if ((this._Middle_Name != value))
 				{
-					this._phmiddle_name = value;
+					this._Middle_Name = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phaddress", DbType="VarChar(100)")]
-		public string phaddress
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Address
 		{
 			get
 			{
-				return this._phaddress;
+				return this._Address;
 			}
 			set
 			{
-				if ((this._phaddress != value))
+				if ((this._Address != value))
 				{
-					this._phaddress = value;
+					this._Address = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phage", DbType="Int NOT NULL")]
-		public int phage
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int NOT NULL")]
+		public int Age
 		{
 			get
 			{
-				return this._phage;
+				return this._Age;
 			}
 			set
 			{
-				if ((this._phage != value))
+				if ((this._Age != value))
 				{
-					this._phage = value;
+					this._Age = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phgender", DbType="VarChar(10)")]
-		public string phgender
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Gender
 		{
 			get
 			{
-				return this._phgender;
+				return this._Gender;
 			}
 			set
 			{
-				if ((this._phgender != value))
+				if ((this._Gender != value))
 				{
-					this._phgender = value;
+					this._Gender = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phcontactnum", DbType="VarChar(15)")]
-		public string phcontactnum
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Contact Number]", Storage="_Contact_Number", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string Contact_Number
 		{
 			get
 			{
-				return this._phcontactnum;
+				return this._Contact_Number;
 			}
 			set
 			{
-				if ((this._phcontactnum != value))
+				if ((this._Contact_Number != value))
 				{
-					this._phcontactnum = value;
+					this._Contact_Number = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phbirthdate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> phbirthdate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birthdate", DbType="DateTime NOT NULL")]
+		public System.DateTime Birthdate
 		{
 			get
 			{
-				return this._phbirthdate;
+				return this._Birthdate;
 			}
 			set
 			{
-				if ((this._phbirthdate != value))
+				if ((this._Birthdate != value))
 				{
-					this._phbirthdate = value;
+					this._Birthdate = value;
 				}
 			}
 		}
@@ -758,222 +811,186 @@ namespace Phonebook
 	public partial class sp_SearchResult
 	{
 		
-		private int _phID;
+		private string _Student_ID;
 		
-		private string _phStudID;
+		private string _Username;
 		
-		private string _phUsername;
+		private string _Last_Name;
 		
-		private string _phPassword;
+		private string _First_Name;
 		
-		private string _phLast_Name;
+		private string _Middle_Name;
 		
-		private string _phFirst_Name;
+		private string _Address;
 		
-		private string _phMiddle_Name;
+		private int _Age;
 		
-		private string _phAddress;
+		private string _Gender;
 		
-		private int _phAge;
+		private string _Contact_Number;
 		
-		private string _phGender;
-		
-		private string _phContactNum;
-		
-		private System.Nullable<System.DateTime> _phBirthDate;
+		private System.DateTime _Birthdate;
 		
 		public sp_SearchResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phID", DbType="Int NOT NULL")]
-		public int phID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Student ID]", Storage="_Student_ID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Student_ID
 		{
 			get
 			{
-				return this._phID;
+				return this._Student_ID;
 			}
 			set
 			{
-				if ((this._phID != value))
+				if ((this._Student_ID != value))
 				{
-					this._phID = value;
+					this._Student_ID = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phStudID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string phStudID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(30)")]
+		public string Username
 		{
 			get
 			{
-				return this._phStudID;
+				return this._Username;
 			}
 			set
 			{
-				if ((this._phStudID != value))
+				if ((this._Username != value))
 				{
-					this._phStudID = value;
+					this._Username = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phUsername", DbType="VarChar(30)")]
-		public string phUsername
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Last Name]", Storage="_Last_Name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Last_Name
 		{
 			get
 			{
-				return this._phUsername;
+				return this._Last_Name;
 			}
 			set
 			{
-				if ((this._phUsername != value))
+				if ((this._Last_Name != value))
 				{
-					this._phUsername = value;
+					this._Last_Name = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phPassword", DbType="VarChar(30)")]
-		public string phPassword
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[First Name]", Storage="_First_Name", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string First_Name
 		{
 			get
 			{
-				return this._phPassword;
+				return this._First_Name;
 			}
 			set
 			{
-				if ((this._phPassword != value))
+				if ((this._First_Name != value))
 				{
-					this._phPassword = value;
+					this._First_Name = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phLast_Name", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string phLast_Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Middle Name]", Storage="_Middle_Name", DbType="VarChar(20)")]
+		public string Middle_Name
 		{
 			get
 			{
-				return this._phLast_Name;
+				return this._Middle_Name;
 			}
 			set
 			{
-				if ((this._phLast_Name != value))
+				if ((this._Middle_Name != value))
 				{
-					this._phLast_Name = value;
+					this._Middle_Name = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phFirst_Name", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
-		public string phFirst_Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Address
 		{
 			get
 			{
-				return this._phFirst_Name;
+				return this._Address;
 			}
 			set
 			{
-				if ((this._phFirst_Name != value))
+				if ((this._Address != value))
 				{
-					this._phFirst_Name = value;
+					this._Address = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phMiddle_Name", DbType="VarChar(20)")]
-		public string phMiddle_Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int NOT NULL")]
+		public int Age
 		{
 			get
 			{
-				return this._phMiddle_Name;
+				return this._Age;
 			}
 			set
 			{
-				if ((this._phMiddle_Name != value))
+				if ((this._Age != value))
 				{
-					this._phMiddle_Name = value;
+					this._Age = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phAddress", DbType="VarChar(100)")]
-		public string phAddress
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Gender
 		{
 			get
 			{
-				return this._phAddress;
+				return this._Gender;
 			}
 			set
 			{
-				if ((this._phAddress != value))
+				if ((this._Gender != value))
 				{
-					this._phAddress = value;
+					this._Gender = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phAge", DbType="Int NOT NULL")]
-		public int phAge
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Contact Number]", Storage="_Contact_Number", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string Contact_Number
 		{
 			get
 			{
-				return this._phAge;
+				return this._Contact_Number;
 			}
 			set
 			{
-				if ((this._phAge != value))
+				if ((this._Contact_Number != value))
 				{
-					this._phAge = value;
+					this._Contact_Number = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phGender", DbType="VarChar(10)")]
-		public string phGender
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birthdate", DbType="DateTime NOT NULL")]
+		public System.DateTime Birthdate
 		{
 			get
 			{
-				return this._phGender;
+				return this._Birthdate;
 			}
 			set
 			{
-				if ((this._phGender != value))
+				if ((this._Birthdate != value))
 				{
-					this._phGender = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phContactNum", DbType="VarChar(15)")]
-		public string phContactNum
-		{
-			get
-			{
-				return this._phContactNum;
-			}
-			set
-			{
-				if ((this._phContactNum != value))
-				{
-					this._phContactNum = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phBirthDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> phBirthDate
-		{
-			get
-			{
-				return this._phBirthDate;
-			}
-			set
-			{
-				if ((this._phBirthDate != value))
-				{
-					this._phBirthDate = value;
+					this._Birthdate = value;
 				}
 			}
 		}
