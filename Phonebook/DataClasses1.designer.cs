@@ -70,13 +70,6 @@ namespace Phonebook
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Delete")]
-		public int sp_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> phID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phID);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_view")]
 		public ISingleResult<sp_viewResult> sp_view()
 		{
@@ -98,18 +91,18 @@ namespace Phonebook
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Update")]
-		public int sp_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phStudID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phUsername, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string phPassword, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(40)")] string phFirst_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phMiddle_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string phAddress, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> phAge, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string phGender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string phContactNum, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> phBirthDate)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phStudID, phUsername, phPassword, phLast_Name, phFirst_Name, phMiddle_Name, phAddress, phAge, phGender, phContactNum, phBirthDate);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_login")]
 		public ISingleResult<sp_loginResult> sp_login([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string username, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string password)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), username, password);
 			return ((ISingleResult<sp_loginResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Search")]
+		public ISingleResult<sp_SearchResult> sp_Search([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phLast_Name);
+			return ((ISingleResult<sp_SearchResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_mview")]
@@ -119,11 +112,18 @@ namespace Phonebook
 			return ((ISingleResult<sp_mviewResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_Search")]
-		public ISingleResult<sp_SearchResult> sp_Search([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_update")]
+		public int sp_update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="StudID", DbType="VarChar(50)")] string studID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phUsername, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(MAX)")] string phPassword, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phLast_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(40)")] string phFirst_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string phMiddle_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string phAddress, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> phAge, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(10)")] string phGender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string phContactNum)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phLast_Name);
-			return ((ISingleResult<sp_SearchResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), studID, phUsername, phPassword, phLast_Name, phFirst_Name, phMiddle_Name, phAddress, phAge, phGender, phContactNum);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_delete")]
+		public int sp_delete([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string phID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), phID);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -620,10 +620,10 @@ namespace Phonebook
 		}
 	}
 	
-	public partial class sp_mviewResult
+	public partial class sp_SearchResult
 	{
 		
-		private string _StudentID;
+		private string _Student_ID;
 		
 		private string _Username;
 		
@@ -643,22 +643,22 @@ namespace Phonebook
 		
 		private System.DateTime _Birthdate;
 		
-		public sp_mviewResult()
+		public sp_SearchResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string StudentID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Student ID]", Storage="_Student_ID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Student_ID
 		{
 			get
 			{
-				return this._StudentID;
+				return this._Student_ID;
 			}
 			set
 			{
-				if ((this._StudentID != value))
+				if ((this._Student_ID != value))
 				{
-					this._StudentID = value;
+					this._Student_ID = value;
 				}
 			}
 		}
@@ -808,10 +808,10 @@ namespace Phonebook
 		}
 	}
 	
-	public partial class sp_SearchResult
+	public partial class sp_mviewResult
 	{
 		
-		private string _Student_ID;
+		private string _StudentID;
 		
 		private string _Username;
 		
@@ -831,22 +831,22 @@ namespace Phonebook
 		
 		private System.DateTime _Birthdate;
 		
-		public sp_SearchResult()
+		public sp_mviewResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Student ID]", Storage="_Student_ID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string Student_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentID", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string StudentID
 		{
 			get
 			{
-				return this._Student_ID;
+				return this._StudentID;
 			}
 			set
 			{
-				if ((this._Student_ID != value))
+				if ((this._StudentID != value))
 				{
-					this._Student_ID = value;
+					this._StudentID = value;
 				}
 			}
 		}

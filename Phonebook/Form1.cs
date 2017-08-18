@@ -23,6 +23,7 @@ namespace Phonebook
         
 
         DataClasses1DataContext db = new DataClasses1DataContext();
+        Has aa = new Has();
 
         //some variables i might need latur
         DateTime date;
@@ -33,7 +34,7 @@ namespace Phonebook
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             //initiate hashing
-            Has aa = new Has();
+           
 
             if (rdomale.Checked)
             {
@@ -43,7 +44,7 @@ namespace Phonebook
             {
                 gender = "Female";
             }
-           db.sp_Insert(txtID.Text,lblusername.Text, aa.HashPass(lblpassword.Text), txtLastname.Text, txtFirstname.Text, txtMiddlename.Text, lbladdress.Text,int.Parse(txtage.Text), gender, lblcontact.Text, date);
+           db.sp_Insert(txtID.Text,lblusername.Text, aa.HashPass(txtPassword.Text), txtLastname.Text, txtFirstname.Text, txtMiddlename.Text, lbladdress.Text,int.Parse(txtage.Text), gender, lblcontact.Text, date);
             IdChange();
 
             dgvviewer.DataSource = db.sp_mview();
@@ -77,8 +78,7 @@ namespace Phonebook
             IdChange();
 
             //rdomale = checked;
-            btnConfirm.Enabled = false;
-            txtUsername.Enabled = false;
+            Clear();
         }
 
         //student ID generator
@@ -112,9 +112,14 @@ namespace Phonebook
             lblname.Text = null;
             lblpassword.Text = null;
             lblusername.Text = null;
+            btnUpdate.Enabled = false;
+            txtUsername.Enabled = false;
 
             // for student id blank space
             IdChange();
+
+            btnSubmit.Enabled = true;
+            btnDelete.Enabled = false;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -129,6 +134,8 @@ namespace Phonebook
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            age = int.Parse(txtage.Text);
+
             if (string.IsNullOrWhiteSpace(txtAddress.Text) || string.IsNullOrWhiteSpace(txtage.Text) || string.IsNullOrWhiteSpace(txtContactnum.Text) ||
                 string.IsNullOrWhiteSpace(txtFirstname.Text) || string.IsNullOrWhiteSpace(txtLastname.Text) || string.IsNullOrWhiteSpace(txtMiddlename.Text) ||
                 string.IsNullOrWhiteSpace(txtPassword.Text)/* || string.IsNullOrWhiteSpace(txtUsername.Text)*/)
@@ -136,6 +143,10 @@ namespace Phonebook
                 er.NotComplete();
             }
 
+            else if (age<=0)
+            {
+                MessageBox.Show("Invalid Age");
+            }
             else
             {
 
@@ -162,7 +173,7 @@ namespace Phonebook
                 //some subtring shat
                 string username = txtLastname.Text.Substring(0) + txtFirstname.Text.Substring(0, 3);
                 txtUsername.Text = username.ToString();
-                MessageBox.Show(username);
+                MessageBox.Show("Your Username is: "+username);
 
                 //transferring of data
                 lbladdress.Text = txtAddress.Text;
@@ -200,6 +211,59 @@ namespace Phonebook
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             dgvviewer.DataSource = db.sp_Search(txtSearch.Text);
+        }
+
+        private void dgvviewer_DoubleClick(object sender, EventArgs e)
+        {
+            txtUsername.Enabled = true;
+            btnUpdate.Enabled = true;
+            txtID.Text = dgvviewer.CurrentRow.Cells[0].Value.ToString();
+            txtUsername.Text = dgvviewer.CurrentRow.Cells[1].Value.ToString();
+            txtLastname.Text = dgvviewer.CurrentRow.Cells[2].Value.ToString();
+            txtFirstname.Text = dgvviewer.CurrentRow.Cells[3].Value.ToString();
+            txtMiddlename.Text = dgvviewer.CurrentRow.Cells[4].Value.ToString();
+            txtAddress.Text = dgvviewer.CurrentRow.Cells[5].Value.ToString();
+            txtage.Text = dgvviewer.CurrentRow.Cells[6].Value.ToString();
+            //gendershat
+            gender = dgvviewer.CurrentRow.Cells[7].Value.ToString();
+            if (gender=="Male")
+            {
+                rdomale.Checked = true;
+            }
+            else
+            {
+                rdofmale.Checked = true;
+            }
+            txtContactnum.Text = dgvviewer.CurrentRow.Cells[8].Value.ToString();
+            //dtpbday.Value = dgvviewer.CurrentRow.Cells[0].Value.ToString();
+            btnSubmit.Enabled = false;
+            btnConfirm.Enabled = false;
+            btnDelete.Enabled = true;
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtAddress.Text) || string.IsNullOrWhiteSpace(txtage.Text) || string.IsNullOrWhiteSpace(txtContactnum.Text) ||
+                string.IsNullOrWhiteSpace(txtFirstname.Text) || string.IsNullOrWhiteSpace(txtLastname.Text) || string.IsNullOrWhiteSpace(txtMiddlename.Text) ||
+                string.IsNullOrWhiteSpace(txtPassword.Text) || string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                er.NotComplete();
+            }
+            else
+            {
+                db.sp_update(txtID.Text, txtUsername.Text, aa.HashPass(txtPassword.Text), txtLastname.Text, txtFirstname.Text, txtMiddlename.Text, txtAddress.Text, int.Parse(txtage.Text), gender, txtContactnum.Text);
+                Showstuff();
+                Clear();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            db.sp_delete(txtID.Text);
+            Showstuff();
+            Clear();
+
         }
     }
 }

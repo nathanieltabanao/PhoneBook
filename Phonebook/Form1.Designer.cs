@@ -77,6 +77,8 @@
             this.lblgender = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvviewer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -366,6 +368,7 @@
             this.dgvviewer.Size = new System.Drawing.Size(950, 176);
             this.dgvviewer.TabIndex = 37;
             this.dgvviewer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvviewer_CellContentClick);
+            this.dgvviewer.DoubleClick += new System.EventHandler(this.dgvviewer_DoubleClick);
             // 
             // btnSubmit
             // 
@@ -504,12 +507,34 @@
             this.lblID.Size = new System.Drawing.Size(0, 13);
             this.lblID.TabIndex = 54;
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(266, 225);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 55;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(266, 254);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 56;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(971, 527);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.lblgender);
@@ -619,6 +644,8 @@
         private System.Windows.Forms.Label lblgender;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 

@@ -16,10 +16,6 @@
       <Column Name="phBirthDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Function Name="dbo.sp_Delete" Method="sp_Delete">
-    <Parameter Name="phID" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.sp_view" Method="sp_view">
     <ElementType Name="sp_viewResult">
       <Column Name="phID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -53,40 +49,12 @@
   <Function Name="dbo.sp_StudentID" Method="sp_StudentID">
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.sp_Update" Method="sp_Update">
-    <Parameter Name="phStudID" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="phUsername" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="phPassword" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="phLast_Name" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="phFirst_Name" Type="System.String" DbType="VarChar(40)" />
-    <Parameter Name="phMiddle_Name" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="phAddress" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="phAge" Type="System.Int32" DbType="Int" />
-    <Parameter Name="phGender" Type="System.String" DbType="VarChar(10)" />
-    <Parameter Name="phContactNum" Type="System.String" DbType="VarChar(15)" />
-    <Parameter Name="phBirthDate" Type="System.DateTime" DbType="DateTime" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.sp_login" Method="sp_login">
     <Parameter Name="username" Type="System.String" DbType="VarChar(30)" />
     <Parameter Name="password" Type="System.String" DbType="VarChar(MAX)" />
     <ElementType Name="sp_loginResult">
       <Column Name="phUsername" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="phPassword" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.sp_mview" Method="sp_mview">
-    <ElementType Name="sp_mviewResult">
-      <Column Name="StudentID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="[Last Name]" Member="Last_Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="[First Name]" Member="First_Name" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
-      <Column Name="[Middle Name]" Member="Middle_Name" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="[Contact Number]" Member="Contact_Number" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="Birthdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.sp_Search" Method="sp_Search">
@@ -103,5 +71,36 @@
       <Column Name="[Contact Number]" Member="Contact_Number" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="Birthdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.sp_mview" Method="sp_mview">
+    <ElementType Name="sp_mviewResult">
+      <Column Name="StudentID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Last Name]" Member="Last_Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[First Name]" Member="First_Name" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="[Middle Name]" Member="Middle_Name" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Contact Number]" Member="Contact_Number" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Birthdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_update" Method="sp_update">
+    <Parameter Name="StudID" Parameter="studID" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="phUsername" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="phPassword" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="phLast_Name" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="phFirst_Name" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="phMiddle_Name" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="phAddress" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="phAge" Type="System.Int32" DbType="Int" />
+    <Parameter Name="phGender" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="phContactNum" Type="System.String" DbType="VarChar(15)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_delete" Method="sp_delete">
+    <Parameter Name="phID" Type="System.String" DbType="VarChar(30)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>
